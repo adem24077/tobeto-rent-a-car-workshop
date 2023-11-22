@@ -3,7 +3,10 @@ package com.tobeto.rentacarworkshop.controllers;
 import com.tobeto.rentacarworkshop.entities.Brand;
 import com.tobeto.rentacarworkshop.entities.Image;
 import com.tobeto.rentacarworkshop.repositories.ImageRepository;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import com.tobeto.rentacarworkshop.services.abstracts.ImageService;
+import com.tobeto.rentacarworkshop.services.dtos.image.request.AddImageRequest;
+import com.tobeto.rentacarworkshop.services.dtos.image.request.DeleteImageRequest;
+import com.tobeto.rentacarworkshop.services.dtos.image.request.UpdateImageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,41 +14,26 @@ import java.util.List;
 @RestController
 @RequestMapping("api/images")
 public class ImageController {
-    private final ImageRepository imageRepository;
+    private ImageService imageService;
 
-    public ImageController(ImageRepository imageRepository){
-        this.imageRepository=imageRepository;
-    }
-
-    @GetMapping
-    public List<Image> getAll() {
-        List<Image> images = imageRepository.findAll();
-        return imageRepository.findAll();
-    }
-
-    @GetMapping("{id}")
-    public Image getById(@PathVariable int id) {
-        return imageRepository.findById(id).orElseThrow();
+    public ImageController(ImageService imageService) {
+        this.imageService = imageService;
     }
 
     @PostMapping
-    public void add(@RequestBody Image image) {
-        imageRepository.save(image);
+    public void add(@RequestBody AddImageRequest request) {
+        imageService.add(request);
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable int id) {
-        Image imageToDelete = imageRepository.findById(id).orElseThrow();
+    public void delete(@RequestBody DeleteImageRequest request) {
+        imageService.delete(request);
     }
 
     @PutMapping("/update/{id}")
-    public void update(@PathVariable int id, @RequestBody Image image) {
-        Image imageToUpdate = imageRepository.getOne(id);
-        imageToUpdate.setCars(image.getCars());
-        imageRepository.save(imageToUpdate);
+    public void update(@RequestBody UpdateImageRequest request) {
+        imageService.update(request);
     }
-
-
 
 
 }

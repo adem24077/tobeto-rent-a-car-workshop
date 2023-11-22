@@ -2,6 +2,10 @@ package com.tobeto.rentacarworkshop.controllers;
 
 import com.tobeto.rentacarworkshop.repositories.BrandRepository;
 import com.tobeto.rentacarworkshop.entities.Brand;
+import com.tobeto.rentacarworkshop.services.abstracts.BrandService;
+import com.tobeto.rentacarworkshop.services.dtos.brand.requests.AddBrandRequest;
+import com.tobeto.rentacarworkshop.services.dtos.brand.requests.DeleteBrandRequest;
+import com.tobeto.rentacarworkshop.services.dtos.brand.requests.UpdateBrandRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,44 +14,26 @@ import java.util.List;
 @RequestMapping("api/brands")
 public class BrandController {
 
-    private final BrandRepository brandRepository;
+    private BrandService brandService;
 
-    public BrandController(BrandRepository brandRepository){
-        this.brandRepository = brandRepository;
-    }
-
-    @GetMapping
-    public List<Brand> getAll() {
-        List<Brand> brands = brandRepository.findAll();
-        return brandRepository.findAll();
-    }
-
-    @GetMapping("{id}")
-    public Brand getById(@PathVariable int id) {
-        return brandRepository.findById(id).orElseThrow();
+    public BrandController(BrandService brandService) {
+        this.brandService = brandService;
     }
 
     @PostMapping
-    public void add(@RequestBody Brand brand){
-        brandRepository.save(brand);
-    }
+   public void add(@RequestBody AddBrandRequest request){
+       brandService.add(request);
+  }
 
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable int id) {
-        Brand brandToDelete = brandRepository.findById(id).orElseThrow();
-        brandRepository.delete(brandToDelete);
-    }
+  @DeleteMapping("{id}")
+    public void delete(@RequestBody DeleteBrandRequest request){
+        brandService.delete(request);
+  }
 
-    @PutMapping("/update/{id}")
-    public void update(@PathVariable int id,@RequestBody Brand brand) {
-        Brand brandToUpdate = brandRepository.getOne(id);
-        brandToUpdate.setName(brand.getName());
-        brandRepository.save(brandToUpdate);
-
-
-
-    }
-
+  @PostMapping("/update/{id}")
+    public void update(@RequestBody UpdateBrandRequest request) {
+        brandService.update(request);
+  }
 
 
 
