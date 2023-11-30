@@ -1,8 +1,8 @@
 package com.tobeto.rentacarworkshop.services.abstracts;
 
-import com.tobeto.rentacarworkshop.services.dtos.image.request.AddImageRequest;
-import com.tobeto.rentacarworkshop.services.dtos.image.request.DeleteImageRequest;
-import com.tobeto.rentacarworkshop.services.dtos.image.request.UpdateImageRequest;
+import com.tobeto.rentacarworkshop.services.dtos.image.requests.AddImageRequest;
+import com.tobeto.rentacarworkshop.services.dtos.image.requests.DeleteImageRequest;
+import com.tobeto.rentacarworkshop.services.dtos.image.requests.UpdateImageRequest;
 
 public interface ImageService {
     void add(AddImageRequest request);

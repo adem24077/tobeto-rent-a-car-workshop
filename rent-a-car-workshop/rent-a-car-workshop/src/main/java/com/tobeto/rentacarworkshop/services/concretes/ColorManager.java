@@ -1,13 +1,16 @@
 package com.tobeto.rentacarworkshop.services.concretes;
 
-import com.tobeto.rentacarworkshop.entities.Brand;
 import com.tobeto.rentacarworkshop.entities.Color;
 import com.tobeto.rentacarworkshop.repositories.ColorRepository;
 import com.tobeto.rentacarworkshop.services.abstracts.ColorService;
-import com.tobeto.rentacarworkshop.services.dtos.color.request.AddColorRequest;
-import com.tobeto.rentacarworkshop.services.dtos.color.request.DeleteColorRequest;
-import com.tobeto.rentacarworkshop.services.dtos.color.request.UpdateColorRequest;
+import com.tobeto.rentacarworkshop.services.dtos.color.requests.AddColorRequest;
+import com.tobeto.rentacarworkshop.services.dtos.color.requests.DeleteColorRequest;
+import com.tobeto.rentacarworkshop.services.dtos.color.requests.UpdateColorRequest;
+import com.tobeto.rentacarworkshop.services.dtos.color.responses.GetListColorResponse;
+
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ColorManager implements ColorService {
@@ -40,6 +43,16 @@ public class ColorManager implements ColorService {
         Color colorToUpdate = colorRepository.getOne(request.getId());
         colorToUpdate.setName(request.getName());
         colorRepository.save(colorToUpdate);
-
     }
+
+    public List<GetListColorResponse> getByName(String name){
+        return colorRepository.findByName(name);
+    }
+
+    @Override
+    public List<Color> getByNameStartWith(String name) {
+        return colorRepository.getByNameStartingWith(name);
+    }
+
+
 }

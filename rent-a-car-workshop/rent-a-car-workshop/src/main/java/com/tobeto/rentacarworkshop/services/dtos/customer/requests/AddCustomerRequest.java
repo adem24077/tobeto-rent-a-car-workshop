@@ -1,4 +1,4 @@
-package com.tobeto.rentacarworkshop.services.dtos.customer.request;
+package com.tobeto.rentacarworkshop.services.dtos.customer.requests;
 
 import lombok.Data;
 

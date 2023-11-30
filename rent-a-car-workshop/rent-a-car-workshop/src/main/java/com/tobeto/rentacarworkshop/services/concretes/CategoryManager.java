@@ -1,13 +1,15 @@
 package com.tobeto.rentacarworkshop.services.concretes;
 
-import com.tobeto.rentacarworkshop.entities.Brand;
 import com.tobeto.rentacarworkshop.entities.Category;
 import com.tobeto.rentacarworkshop.repositories.CategoryRepository;
 import com.tobeto.rentacarworkshop.services.abstracts.CategoryService;
-import com.tobeto.rentacarworkshop.services.dtos.category.request.AddCategoryRequest;
-import com.tobeto.rentacarworkshop.services.dtos.category.request.DeleteCategoryRequest;
-import com.tobeto.rentacarworkshop.services.dtos.category.request.UpdateCategoryRequest;
+import com.tobeto.rentacarworkshop.services.dtos.category.requests.AddCategoryRequest;
+import com.tobeto.rentacarworkshop.services.dtos.category.requests.DeleteCategoryRequest;
+import com.tobeto.rentacarworkshop.services.dtos.category.requests.UpdateCategoryRequest;
+import com.tobeto.rentacarworkshop.services.dtos.category.responses.GetListCategoryResponse;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoryManager implements CategoryService {
@@ -39,5 +41,15 @@ public class CategoryManager implements CategoryService {
         categoryToUpdate.setName(request.getName());
         categoryRepository.save(categoryToUpdate);
 
+    }
+
+    @Override
+    public List<Category> getNameStartWith(String name) {
+        return categoryRepository.findByNameStartingWith(name);
+    }
+
+    @Override
+    public List<GetListCategoryResponse> getByName(String name) {
+        return categoryRepository.findByName(name);
     }
 }
