@@ -17,5 +17,10 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
     "From Car c Where c.dailyPrice= :dailyPrice")
     List<GetListCarResponse> findByDailyPrice(double dailyPrice);
 
+    @Query("Select new com.tobeto.rentacarworkshop.services.dtos.car.responses.GetListCarResponse"+
+    "(c.id,c.dailyPrice,c.modelYear, new com.tobeto.rentacarworkshop.services.dtos.brand.responses.GetListBrandResponse(b.id,b.name))"
+            + "FROM Car c INNER JOIN c.brand b")
+    List<GetListCarResponse> getAll();
+
 
 }

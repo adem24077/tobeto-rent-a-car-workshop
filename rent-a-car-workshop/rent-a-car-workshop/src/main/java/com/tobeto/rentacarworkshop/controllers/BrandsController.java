@@ -1,6 +1,5 @@
 package com.tobeto.rentacarworkshop.controllers;
 
-import com.tobeto.rentacarworkshop.repositories.BrandRepository;
 import com.tobeto.rentacarworkshop.entities.Brand;
 import com.tobeto.rentacarworkshop.services.abstracts.BrandService;
 import com.tobeto.rentacarworkshop.services.dtos.brand.requests.AddBrandRequest;
@@ -13,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/brands")
-public class BrandController {
+public class BrandsController {
 
     private BrandService brandService;
 
-    public BrandController(BrandService brandService) {
+    public BrandsController(BrandService brandService) {
         this.brandService = brandService;
     }
 
@@ -45,6 +44,11 @@ public class BrandController {
     public List<Brand> getByNameStartingWith(@RequestParam String name) {
         return brandService.getByNameStartWith(name);
   }
+  @GetMapping("getall")
+    public List<String> getAll() {
+        return brandService.getAll();
+  }
+
 
 
 

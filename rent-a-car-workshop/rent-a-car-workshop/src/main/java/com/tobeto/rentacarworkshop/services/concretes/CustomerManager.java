@@ -10,6 +10,7 @@ import com.tobeto.rentacarworkshop.services.dtos.customer.requests.UpdateCustome
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerManager implements CustomerService {
@@ -55,6 +56,10 @@ public class CustomerManager implements CustomerService {
         return customerRepository.findBySurname(surname);
     }
 
+    @Override
+    public List<String> getAll() {
+        return customerRepository.findAll().stream().map(Customer::getName).collect(Collectors.toList());
+    }
 
 
 }

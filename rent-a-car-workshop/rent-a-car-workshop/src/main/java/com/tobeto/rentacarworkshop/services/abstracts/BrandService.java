@@ -14,4 +14,5 @@ public interface BrandService {
     void delete(DeleteBrandRequest request);
     List<GetListBrandResponse> getByName(String name);
     List<Brand> getByNameStartWith(String name);
+    List<String> getAll();
 }

@@ -12,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/colors")
-public class ColorController {
+public class ColorsController {
 
     private ColorService colorService;
-    public ColorController(ColorService colorService) {
+    public ColorsController(ColorService colorService) {
         this.colorService = colorService;
     }
 
@@ -43,6 +43,11 @@ public class ColorController {
     @GetMapping("fName")
     public List<GetListColorResponse> getByName(@RequestParam String name){
         return colorService.getByName(name);
+    }
+
+    @GetMapping("getall")
+    public List<GetListColorResponse> getAll() {
+        return colorService.getAll();
     }
 
 

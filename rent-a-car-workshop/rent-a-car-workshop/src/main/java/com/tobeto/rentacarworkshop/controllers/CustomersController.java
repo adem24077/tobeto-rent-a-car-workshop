@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/customers")
-public class CustomerController {
+public class CustomersController {
 
     private CustomerService customerService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomersController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
@@ -44,6 +44,11 @@ public class CustomerController {
     @GetMapping
     public List<Customer> getBySurname(@RequestParam String surname) {
         return customerService.getBySurname(surname);
+    }
+
+    @GetMapping("getall")
+    public List<String> getAll() {
+        return customerService.getAll();
     }
 
 

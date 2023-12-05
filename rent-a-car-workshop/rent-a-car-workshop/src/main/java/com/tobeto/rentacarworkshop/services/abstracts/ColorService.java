@@ -14,5 +14,6 @@ public interface ColorService {
     void update(UpdateColorRequest request);
     List<GetListColorResponse> getByName(String name);
     List<Color> getByNameStartWith(String name);
+    List<GetListColorResponse> getAll();
 
 }

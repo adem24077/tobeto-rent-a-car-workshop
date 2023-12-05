@@ -10,6 +10,7 @@ import com.tobeto.rentacarworkshop.services.dtos.brand.responses.GetListBrandRes
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandManager implements BrandService {
@@ -46,12 +47,26 @@ public class BrandManager implements BrandService {
 
     @Override
     public List<GetListBrandResponse> getByName(String name) {
-        return brandRepository.findByName(name);
+        List<GetListBrandResponse> brands = brandRepository.findByName(name);
+        return brands.stream().map(brand -> new GetListBrandResponse(brand.getId(),brand.getName())).
+                collect(Collectors.toList());
     }
+
+    /*@Override
+    public List<GetListBrandResponse> getByName(String name) {
+        return brandRepository.findByName(name);
+    }*/
+
+
 
     @Override
     public List<Brand> getByNameStartWith(String name) {
         return brandRepository.getByNameStartingWith(name);
+    }
+
+    @Override
+    public List<String> getAll() {
+        return brandRepository.findAll().stream().map(Brand::getName).collect(Collectors.toList());
     }
 
 

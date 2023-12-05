@@ -7,6 +7,5 @@ import com.tobeto.rentacarworkshop.services.dtos.image.requests.UpdateImageReque
 public interface ImageService {
     void add(AddImageRequest request);
     void delete(DeleteImageRequest request);
-
     void update(UpdateImageRequest request);
 }

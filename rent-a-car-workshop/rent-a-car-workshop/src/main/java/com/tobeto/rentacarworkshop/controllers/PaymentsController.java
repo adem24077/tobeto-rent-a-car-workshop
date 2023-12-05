@@ -8,10 +8,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/payments")
-public class PaymentController {
+public class PaymentsController {
     private final PaymentRepository paymentRepository;
 
-    public PaymentController(PaymentRepository paymentRepository) {
+    public PaymentsController(PaymentRepository paymentRepository) {
         this.paymentRepository = paymentRepository;
     }
 

@@ -52,4 +52,10 @@ public class CategoryManager implements CategoryService {
     public List<GetListCategoryResponse> getByName(String name) {
         return categoryRepository.findByName(name);
     }
+
+    @Override
+    public List<GetListCategoryResponse> getAll() {
+        return categoryRepository.findAll().stream().
+                map(category -> new GetListCategoryResponse(category.getId(),category.getName())).toList();
+    }
 }

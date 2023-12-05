@@ -59,5 +59,10 @@ public class CarManager implements CarService {
         return carRepository.findByDailyPrice(dailyPrice);
     }
 
+    @Override
+    public List<GetListCarResponse> getAll() {
+        return carRepository.getAll();
+    }
+
 
 }

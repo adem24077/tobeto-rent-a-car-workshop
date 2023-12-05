@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/categories")
-public class CategoryController {
+public class CategoriesController {
 
     private CategoryService categoryService;
 
-    public CategoryController(CategoryService categoryService) {
+    public CategoriesController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
@@ -45,6 +45,12 @@ public class CategoryController {
     public List<GetListCategoryResponse> getByName(@RequestParam String name){
         return categoryService.getByName(name);
     }
+
+    @GetMapping("getall")
+    public List<GetListCategoryResponse> getAll() {
+        return categoryService.getAll();
+    }
+
 
 
 

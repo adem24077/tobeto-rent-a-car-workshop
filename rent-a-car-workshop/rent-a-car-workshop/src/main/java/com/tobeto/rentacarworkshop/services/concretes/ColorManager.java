@@ -54,5 +54,11 @@ public class ColorManager implements ColorService {
         return colorRepository.getByNameStartingWith(name);
     }
 
+    @Override
+    public List<GetListColorResponse> getAll() {
+        return colorRepository.findAll().stream().
+                map(color -> new GetListColorResponse(color.getId(),color.getName())).toList();
+    }
+
 
 }

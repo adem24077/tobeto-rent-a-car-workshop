@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/images")
-public class ImageController {
+public class ImagesController {
     private ImageService imageService;
 
-    public ImageController(ImageService imageService) {
+    public ImagesController(ImageService imageService) {
         this.imageService = imageService;
     }
 

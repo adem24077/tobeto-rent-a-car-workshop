@@ -10,8 +10,6 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
     List<Category> findByNameStartingWith(String name);
-
-
     @Query("Select new com.tobeto.rentacarworkshop.services.dtos.category.responses.GetListCategoryResponse(b.id,b.name)" +
             "From Brand b WHERE b.name= :name ")
     List<GetListCategoryResponse> findByName(String name);

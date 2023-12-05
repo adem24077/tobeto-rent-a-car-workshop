@@ -14,5 +14,6 @@ public interface CustomerService {
     void update(UpdateCustomerRequest request);
     List<GetListCustomerResponse> getByName(String name);
     List<Customer> getBySurname(String surname);
+    List<String> getAll();
 
 }

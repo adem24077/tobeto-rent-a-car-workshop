@@ -14,4 +14,5 @@ public interface CategoryService {
     void update(UpdateCategoryRequest request);
     List<Category> getNameStartWith(String name);
     List<GetListCategoryResponse> getByName(String name);
+    List<GetListCategoryResponse> getAll();
 }

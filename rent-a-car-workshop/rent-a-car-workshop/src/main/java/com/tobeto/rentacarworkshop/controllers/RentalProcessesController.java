@@ -8,11 +8,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/rentalprocesses")
-public class RentalProcessController {
+public class RentalProcessesController {
 
     private final RentalProcessRepository rentalProcessRepository;
 
-    public RentalProcessController(RentalProcessRepository rentalProcessRepository) {
+    public RentalProcessesController(RentalProcessRepository rentalProcessRepository) {
         this.rentalProcessRepository = rentalProcessRepository;
     }
 

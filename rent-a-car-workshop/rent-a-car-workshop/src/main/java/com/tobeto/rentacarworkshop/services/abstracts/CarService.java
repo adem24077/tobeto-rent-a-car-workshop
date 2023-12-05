@@ -13,6 +13,7 @@ public interface CarService {
     void delete(DeleteCarRequest request);
     List<GetListCarResponse> getByModelYear(int modelYear);
     List<GetListCarResponse> getByDailyPrice(double dailyPrice);
+    List<GetListCarResponse> getAll();
 
 
 }
