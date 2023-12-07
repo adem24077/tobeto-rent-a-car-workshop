@@ -1,11 +1,15 @@
 package com.tobeto.rentacarworkshop.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Table(name = "payments")
 @Entity
+@Getter
+@Setter
 public class Payment {
 
     @Id
@@ -28,52 +32,4 @@ public class Payment {
     @OneToMany(mappedBy = "payment")
     private List<RentalProcess> rentalProcesses;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCarHolderName() {
-        return carHolderName;
-    }
-
-    public void setCarHolderName(String carHolderName) {
-        this.carHolderName = carHolderName;
-    }
-
-    public String getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
-    public String getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(String expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-
-    public int getCvv() {
-        return cvv;
-    }
-
-    public void setCvv(int cvv) {
-        this.cvv = cvv;
-    }
-
-    public List<RentalProcess> getRentalProcesses() {
-        return rentalProcesses;
-    }
-
-    public void setRentalProcesses(List<RentalProcess> rentalProcesses) {
-        this.rentalProcesses = rentalProcesses;
-    }
 }

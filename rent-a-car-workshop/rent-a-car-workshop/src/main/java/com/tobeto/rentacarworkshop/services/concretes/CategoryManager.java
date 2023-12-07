@@ -22,6 +22,9 @@ public class CategoryManager implements CategoryService {
     public void add(AddCategoryRequest request) {
         if (request.getName().length()<4)
             throw new RuntimeException("Kategori karakter sayısı 4'ten az olamaz.");
+        if (request.getName().equals("Ağır Vasıta")){
+            throw new IllegalStateException("Bu kategori sisteme eklenememektedir.");
+        }
 
         Category category = new Category();
         category.setName(request.getName());

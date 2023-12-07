@@ -10,6 +10,8 @@ import java.util.List;
 
 @Table(name = "cars")
 @Entity
+@Getter
+@Setter
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,9 @@ public class Car {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "plate")
+    private String plate;
 
     @OneToMany(mappedBy = "car")
     private List<RentalProcess> rentalProcesses;
@@ -44,75 +49,4 @@ public class Car {
     @JoinColumn(name = "image_id")
     private Image image;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getModelYear() {
-        return modelYear;
-    }
-
-    public void setModelYear(int modelYear) {
-        this.modelYear = modelYear;
-    }
-
-    public double getDailyPrice() {
-        return dailyPrice;
-    }
-
-    public void setDailyPrice(double dailyPrice) {
-        this.dailyPrice = dailyPrice;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<RentalProcess> getRentalProcesses() {
-        return rentalProcesses;
-    }
-
-    public void setRentalProcesses(List<RentalProcess> rentalProcesses) {
-        this.rentalProcesses = rentalProcesses;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
 }

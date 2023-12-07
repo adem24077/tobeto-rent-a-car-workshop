@@ -14,5 +14,4 @@ public interface BrandRepository extends JpaRepository<Brand, Integer>
     List<GetListBrandResponse> findByName(String name);
     List<Brand> getByNameStartingWith(String name);
 
-
 }

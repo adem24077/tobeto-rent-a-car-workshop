@@ -34,6 +34,9 @@ public class BrandManager implements BrandService {
 
     @Override
     public void update(UpdateBrandRequest request) {
+        if (request.getName().length()<3)
+            throw new RuntimeException("Marka ismi 3 haneden küçük olamaz");
+
         Brand brandToUpdate = brandRepository.getOne(request.getId());
         brandToUpdate.setName(request.getName());
         brandRepository.save(brandToUpdate);
@@ -57,8 +60,6 @@ public class BrandManager implements BrandService {
         return brandRepository.findByName(name);
     }*/
 
-
-
     @Override
     public List<Brand> getByNameStartWith(String name) {
         return brandRepository.getByNameStartingWith(name);
@@ -69,5 +70,9 @@ public class BrandManager implements BrandService {
         return brandRepository.findAll().stream().map(Brand::getName).collect(Collectors.toList());
     }
 
+    @Override
+    public Brand getById(int id) {
+        return brandRepository.findById(id).orElseThrow();
+    }
 
 }

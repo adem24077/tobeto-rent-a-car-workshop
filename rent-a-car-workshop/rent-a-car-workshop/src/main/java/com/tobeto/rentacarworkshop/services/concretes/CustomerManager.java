@@ -26,8 +26,11 @@ public class CustomerManager implements CustomerService {
         if (request.getName().length()<2)
             throw new RuntimeException("Müşteri adı 2'den az olamaz. ");
 
+
         Customer customer = new Customer();
         customer.setName(request.getName());
+        customer.setSurname(request.getSurname());
+        customer.setPhone(request.getPhone());
         customerRepository.save(customer);
     }
 

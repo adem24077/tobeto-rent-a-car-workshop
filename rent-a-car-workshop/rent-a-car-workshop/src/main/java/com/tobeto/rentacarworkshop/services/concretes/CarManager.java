@@ -1,7 +1,9 @@
 package com.tobeto.rentacarworkshop.services.concretes;
 
+import com.tobeto.rentacarworkshop.entities.Brand;
 import com.tobeto.rentacarworkshop.entities.Car;
 import com.tobeto.rentacarworkshop.repositories.CarRepository;
+import com.tobeto.rentacarworkshop.services.abstracts.BrandService;
 import com.tobeto.rentacarworkshop.services.abstracts.CarService;
 import com.tobeto.rentacarworkshop.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.rentacarworkshop.services.dtos.car.requests.DeleteCarRequest;
@@ -11,16 +13,29 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class CarManager implements CarService {
 
-    private CarRepository carRepository;
-    public CarManager(CarRepository carRepository){
+    private final CarRepository carRepository;
+    private final BrandService brandService;
+
+    public CarManager(CarRepository carRepository, BrandService brandService){
         this.carRepository = carRepository;
+        this.brandService = brandService;
     }
 
     @Override
     public void add(AddCarRequest request) {
+
+        if (carRepository.existsCarByPlate(request.getPlate())){
+            throw new RuntimeException("Aynı plaka ile 2. araba eklenmez.");
+        }
+        if (request.getBrand().getName().equals("Tesla")){
+            throw new IllegalStateException("Tesla markasındaki araç eklenmemektedir.");
+        }
+
+
         Car car = new Car();
         car.setBrand(request.getBrand());
         car.setCategory(request.getCategory());
@@ -29,11 +44,17 @@ public class CarManager implements CarService {
         car.setDescription(request.getDescription());
         car.setDailyPrice(request.getDailyPrice());
         car.setModelYear(request.getModelYear());
+
+        Brand brand = brandService.getById(request.getBrandId());
+
         carRepository.save(car);
     }
     @Override
     public void update(UpdateCarRequest request) {
+
+
         Car carToUpdate = carRepository.getOne(request.getId());
+
         carToUpdate.setBrand(carToUpdate.getBrand());
         carToUpdate.setCategory(request.getCategory());
         carToUpdate.setColor(request.getColor());

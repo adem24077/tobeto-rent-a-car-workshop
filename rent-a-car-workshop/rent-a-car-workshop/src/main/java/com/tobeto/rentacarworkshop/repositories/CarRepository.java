@@ -22,5 +22,6 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
             + "FROM Car c INNER JOIN c.brand b")
     List<GetListCarResponse> getAll();
 
+    boolean existsCarByPlate(String plate);
 
 }
