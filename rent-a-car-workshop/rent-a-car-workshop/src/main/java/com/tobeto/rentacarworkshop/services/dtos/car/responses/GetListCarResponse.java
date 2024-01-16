@@ -4,7 +4,7 @@ import com.tobeto.rentacarworkshop.entities.Brand;
 import com.tobeto.rentacarworkshop.services.dtos.brand.responses.GetListBrandResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 @AllArgsConstructor
 @Data

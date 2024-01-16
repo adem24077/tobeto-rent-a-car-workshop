@@ -6,6 +6,7 @@ import com.tobeto.rentacarworkshop.services.dtos.brand.requests.AddBrandRequest;
 import com.tobeto.rentacarworkshop.services.dtos.brand.requests.DeleteBrandRequest;
 import com.tobeto.rentacarworkshop.services.dtos.brand.requests.UpdateBrandRequest;
 import com.tobeto.rentacarworkshop.services.dtos.brand.responses.GetListBrandResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class BrandsController {
     }
 
     @PostMapping
-   public void add(@RequestBody AddBrandRequest request){
+   public void add(@RequestBody @Valid AddBrandRequest request){
        brandService.add(request);
   }
 
